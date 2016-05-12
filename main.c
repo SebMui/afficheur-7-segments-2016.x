@@ -86,7 +86,8 @@ void initialisationHardware() {
  */
 void main(void) {
     initialisationHardware();
-    afficheurEtablitDigits(77);
+    afficheurEtablitDigits(77); // affiche 77 tant que la première conversion
+                                // n'a pas été faite
     while(1);
 }
 #endif

@@ -8,12 +8,29 @@ static unsigned char digits[2];
 static char ascii7Segments[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
 
 void afficheurEtablitDigits(char nombre) {
-    // À implémenter...
+
+    if(nombre>99) // limite l'affichage à 99
+    {
+        nombre=99; //force à 99
+    }
+    digits[0] = nombre/10; // récupère la dizaine car variable entière
+    digits[1] = nombre%10;   // récupère le reste de la division par 10 = unité
 }
 
 unsigned char digit(unsigned char position) {
-    // À implémenter...
-    return 0;
+    // tableau permettant la conversion en BCD 7 segments
+   unsigned char Tableau_Decimal [10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66,  // 0-4
+                                          0x6D, 0x7D, 0x07, 0x7F, 0x6F}; // 5-9
+   
+  if(position==0) // traitement de la dizaine
+  {   // si dizaine vaut 0, pas d'affichage pour la dizaine     
+      if(digits[0]==0) return 0; return Tableau_Decimal[digits[0]]; 
+  }
+  else // traitement de l'unité
+  {
+      // affiche l'unité
+     return  Tableau_Decimal[digits[1]];   
+  }
 }
 
 
